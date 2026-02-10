@@ -101,13 +101,47 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (populated during roadmap creation) | | |
+| DB-01 | Phase 1 | Pending |
+| DB-02 | Phase 1 | Pending |
+| DB-03 | Phase 1 | Pending |
+| DB-04 | Phase 1 | Pending |
+| DB-05 | Phase 1 | Pending |
+| DB-06 | Phase 1 | Pending |
+| DB-07 | Phase 1 | Pending |
+| INFRA-01 | Phase 1 | Pending |
+| INFRA-02 | Phase 1 | Pending |
+| UI-01 | Phase 1 | Pending |
+| UI-02 | Phase 1 | Pending |
+| UI-03 | Phase 1 | Pending |
+| UI-04 | Phase 1 | Pending |
+| DASH-01 | Phase 2 | Pending |
+| DASH-02 | Phase 2 | Pending |
+| DASH-07 | Phase 3 | Pending |
+| DASH-08 | Phase 3 | Pending |
+| DASH-09 | Phase 3 | Pending |
+| DASH-03 | Phase 4 | Pending |
+| DASH-04 | Phase 4 | Pending |
+| DASH-05 | Phase 4 | Pending |
+| DASH-06 | Phase 4 | Pending |
+| DASH-10 | Phase 4 | Pending |
+| FORM-01 | Phase 5 | Pending |
+| FORM-02 | Phase 5 | Pending |
+| FORM-03 | Phase 5 | Pending |
+| FORM-04 | Phase 5 | Pending |
+| FORM-05 | Phase 5 | Pending |
+| FORM-06 | Phase 5 | Pending |
+| FORM-07 | Phase 5 | Pending |
+| FORM-08 | Phase 5 | Pending |
+| FORM-09 | Phase 5 | Pending |
+| FORM-10 | Phase 5 | Pending |
+| FORM-11 | Phase 5 | Pending |
+| FORM-12 | Phase 5 | Pending |
 
 **Coverage:**
-- v1 requirements: 33 total
-- Mapped to phases: 0
-- Unmapped: 33
+- v1 requirements: 35 total
+- Mapped to phases: 35
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-02-10*
-*Last updated: 2026-02-10 after initial definition*
+*Last updated: 2026-02-10 after roadmap creation*
