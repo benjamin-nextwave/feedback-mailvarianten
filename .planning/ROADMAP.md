@@ -49,10 +49,10 @@ Plans:
   3. Status badges display correct colors (amber for pending, green for completed)
   4. Shareable public URLs are copyable/clickable for each form
   5. Empty state displays when no forms exist
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] TBD (planning not started)
+- [ ] 02-01-PLAN.md — Dashboard page with forms table, copy-link button, loading skeleton, and empty state
 
 ### Phase 3: Dashboard Form Detail
 **Goal**: Agency can view individual form details including all variants and submitted feedback
@@ -119,11 +119,11 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation & Design System | 2/2 | Complete | 2026-02-10 |
-| 2. Dashboard Home | 0/TBD | Not started | - |
+| 2. Dashboard Home | 0/1 | In progress | - |
 | 3. Dashboard Form Detail | 0/TBD | Not started | - |
 | 4. Form Creation & Management | 0/TBD | Not started | - |
 | 5. Public Feedback Form | 0/TBD | Not started | - |
 
 ---
 *Roadmap created: 2026-02-10*
-*Last updated: 2026-02-10 after completing plan 01-02 (Phase 1 complete)*
+*Last updated: 2026-02-10 after planning Phase 2 (1 plan created)*
