@@ -33,10 +33,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   6. Application deploys to Vercel with environment variables only
   7. Design system is established with Dutch UI components (buttons, cards, typography)
   8. Light theme colors are consistently applied throughout (blue primary, green success, amber pending)
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] TBD (planning not started)
+- [ ] 01-01-PLAN.md — Project scaffolding, Supabase clients, database migration SQL with schema and RLS policies
+- [ ] 01-02-PLAN.md — shadcn/ui design system with theme colors and Dutch application components
 
 ### Phase 2: Dashboard Home
 **Goal**: Agency can view all forms in a dashboard list with status, shareable links, and actions
@@ -117,7 +118,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Design System | 0/TBD | Not started | - |
+| 1. Foundation & Design System | 0/2 | Planning complete | - |
 | 2. Dashboard Home | 0/TBD | Not started | - |
 | 3. Dashboard Form Detail | 0/TBD | Not started | - |
 | 4. Form Creation & Management | 0/TBD | Not started | - |
@@ -125,4 +126,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 ---
 *Roadmap created: 2026-02-10*
-*Last updated: 2026-02-10 after initialization*
+*Last updated: 2026-02-10 after Phase 1 planning*
