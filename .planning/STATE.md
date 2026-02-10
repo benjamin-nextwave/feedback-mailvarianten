@@ -10,28 +10,28 @@ See: .planning/PROJECT.md (updated 2026-02-10)
 ## Current Position
 
 Phase: 1 of 5 (Foundation & Design System)
-Plan: 0 of TBD in current phase
-Status: Ready to plan
-Last activity: 2026-02-10 — Roadmap created with 5 phases covering 35 v1 requirements
+Plan: 1 of 2 in current phase
+Status: In progress
+Last activity: 2026-02-10 — Completed 01-01-PLAN.md (project scaffolding and database schema)
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [█░░░░░░░░░] 10%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 0
-- Average duration: N/A
-- Total execution time: 0.0 hours
+- Total plans completed: 1
+- Average duration: 10 minutes
+- Total execution time: 0.17 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| - | - | - | - |
+| 1. Foundation & Design System | 1 | 10 min | 10 min |
 
 **Recent Trend:**
-- Last 5 plans: None yet
-- Trend: N/A
+- Last 5 plans: 01-01 (10 min)
+- Trend: Establishing baseline
 
 *Updated after each plan completion*
 
@@ -47,20 +47,28 @@ Recent decisions affecting current work:
 - Client sees read-only view after submission (prevents confusion)
 - Fire-and-forget webhook (don't block UX on external service reliability)
 
+**Plan 01-01 decisions:**
+- Use @supabase/ssr for both server and client (Next.js 15 compatibility)
+- Create database types manually to match migration SQL exactly
+- Use Dutch terms for email_type enum values ('eerste_mail', 'opvolgmail_1', 'opvolgmail_2')
+- Use 'active' and 'completed' for form status (simple two-state workflow)
+
 ### Pending Todos
 
 None yet.
 
 ### Blockers/Concerns
 
-None yet.
+**User Action Required:**
+- User must create Supabase project and configure environment variables before continuing development
+- See `.planning/phases/01-foundation-design-system/01-USER-SETUP.md` for instructions
 
 ## Session Continuity
 
 Last session: 2026-02-10
-Stopped at: Roadmap initialized, ready for Phase 1 planning
-Resume file: None
+Stopped at: Plan 01-01 complete - project scaffolding and database schema ready
+Resume file: .planning/phases/01-foundation-design-system/01-02-PLAN.md (next plan)
 
 ---
 *State initialized: 2026-02-10*
-*Last updated: 2026-02-10 after roadmap creation*
+*Last updated: 2026-02-10 after completing plan 01-01*
