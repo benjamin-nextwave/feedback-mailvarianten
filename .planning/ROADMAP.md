@@ -86,7 +86,7 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 04-01-PLAN.md — Install dependencies (react-hook-form, zod, slugify), add shadcn form components, create Zod schema and Server Actions
+- [x] 04-01-PLAN.md — Install dependencies (react-hook-form, zod, slugify), add shadcn form components, create Zod schema and Server Actions (completed 2026-02-11, 5.6 min)
 - [ ] 04-02-PLAN.md — Form creation page with dynamic variant fields, opvolgmail toggles, and dashboard navigation
 - [ ] 04-03-PLAN.md — Delete form confirmation dialog integrated into dashboard table and form detail page
 
@@ -123,9 +123,9 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 1. Foundation & Design System | 2/2 | Complete | 2026-02-10 |
 | 2. Dashboard Home | 1/1 | Complete | 2026-02-10 |
 | 3. Dashboard Form Detail | 1/1 | Complete | 2026-02-11 |
-| 4. Form Creation & Management | 0/3 | Planning complete | - |
+| 4. Form Creation & Management | 1/3 | In progress | - |
 | 5. Public Feedback Form | 0/TBD | Not started | - |
 
 ---
 *Roadmap created: 2026-02-10*
-*Last updated: 2026-02-11 after planning Phase 4 (3 plans created)*
+*Last updated: 2026-02-11 after completing plan 04-01 (dependencies and schema)*
