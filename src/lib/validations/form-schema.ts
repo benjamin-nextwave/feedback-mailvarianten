@@ -12,13 +12,6 @@ export const formSchema = z
     // Required client name
     klantnaam: z.string().min(1, "Klantnaam is verplicht"),
 
-    // Optional webhook URL - allow empty string or valid URL
-    webhook_url: z
-      .string()
-      .url("Ongeldige URL")
-      .optional()
-      .or(z.literal("")),
-
     // Eerste mail variants: required, 1-5 items
     eerste_mail_variants: z
       .array(variantSchema)

@@ -23,7 +23,6 @@ type FormWithVariants = {
   client_name: string;
   slug: string;
   status: "active" | "completed";
-  webhook_url: string | null;
   email_variants: EmailVariantData[];
 };
 
@@ -47,7 +46,7 @@ export default async function PublicFeedbackPage({
     .from("forms")
     .select(
       `
-      id, client_name, slug, status, webhook_url,
+      id, client_name, slug, status,
       email_variants (
         id, email_type, variant_number, subject_line, email_body, sort_order
       )

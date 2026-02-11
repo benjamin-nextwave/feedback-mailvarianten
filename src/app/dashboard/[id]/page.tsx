@@ -32,7 +32,6 @@ type FormWithVariantsAndFeedback = {
   client_name: string;
   slug: string;
   status: 'active' | 'completed';
-  webhook_url: string | null;
   created_at: string;
   email_variants: EmailVariantData[];
 };
@@ -56,7 +55,7 @@ export default async function FormDetailPage({
   const { data: form, error } = await supabase
     .from('forms')
     .select(`
-      id, client_name, slug, status, webhook_url, created_at,
+      id, client_name, slug, status, created_at,
       email_variants (
         id, email_type, variant_number, subject_line, email_body, sort_order,
         feedback_responses (

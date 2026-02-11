@@ -4,7 +4,8 @@ import { createClient } from "@/lib/supabase/server";
 import { formSchema, type FormSchemaType } from "@/lib/validations/form-schema";
 import type { Form, EmailVariantInsert } from "@/types/database.types";
 import { revalidatePath } from "next/cache";
-import { redirect, isRedirectError } from "next/navigation";
+import { redirect } from "next/navigation";
+import { isRedirectError } from "next/dist/client/components/redirect-error";
 import slugify from "slugify";
 
 /**
@@ -66,7 +67,6 @@ export async function createFormAction(data: FormSchemaType) {
       .insert({
         client_name: data.klantnaam,
         slug,
-        webhook_url: data.webhook_url || null,
         status: "active" as const,
       } as any)
       .select()

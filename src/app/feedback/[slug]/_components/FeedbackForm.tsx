@@ -17,7 +17,6 @@ interface FeedbackFormProps {
     id: string;
     client_name: string;
     slug: string;
-    webhook_url: string | null;
     email_variants: Array<{
       id: string;
       email_type: EmailType;
@@ -102,7 +101,6 @@ export function FeedbackForm({ form }: FeedbackFormProps) {
       const result = await submitFeedbackAction(
         form.id,
         form.slug,
-        form.webhook_url,
         feedbackEntries
       );
 

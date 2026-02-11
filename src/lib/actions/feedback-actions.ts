@@ -14,14 +14,15 @@ type ActionResult = {
   error?: string;
 };
 
+const WEBHOOK_URL = "https://hook.eu2.make.com/39qm7lyzms7omhdvuu7dlb211gyg3jir";
+
 /**
  * Submit feedback for a form
- * Validates entries, batch inserts feedback, updates form status, fires webhook (if configured)
+ * Validates entries, batch inserts feedback, updates form status, fires webhook
  */
 export async function submitFeedbackAction(
   formId: string,
   slug: string,
-  webhookUrl: string | null,
   feedbackEntries: FeedbackEntry[]
 ): Promise<ActionResult> {
   const supabase = await createClient();
@@ -83,28 +84,13 @@ export async function submitFeedbackAction(
       console.error("Form status update error:", updateError);
     }
 
-    // Fire-and-forget webhook (if configured)
-    if (webhookUrl) {
-      const webhookPayload = {
-        form_id: formId,
-        client_name: clientName,
-        slug,
-        submitted_at: submittedAt,
-        feedback_count: validEntries.length,
-        responses: validEntries.map((entry) => ({
-          variant_id: entry.variant_id,
-          feedback_text: entry.feedback_text,
-        })),
-      };
-
-      // Fire and forget — do NOT await
-      fetch(webhookUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(webhookPayload),
-        keepalive: true,
-      }).catch((err) => console.error("Webhook failed:", err));
-    }
+    // Fire-and-forget webhook
+    fetch(WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ client_name: clientName }),
+      keepalive: true,
+    }).catch((err) => console.error("Webhook failed:", err));
 
     // Revalidate the public feedback page to show read-only view
     revalidatePath("/feedback/" + slug);

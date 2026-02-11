@@ -9,7 +9,7 @@ import { createFormAction } from '@/lib/actions/form-actions';
 import {
   Form,
   FormControl,
-  FormDescription,
+
   FormField,
   FormItem,
   FormLabel,
@@ -29,7 +29,6 @@ export function CreateFormClient() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       klantnaam: '',
-      webhook_url: '',
       eerste_mail_variants: [{ subject: '', body: '' }],
       opvolgmail_1_enabled: false,
       opvolgmail_1_variants: [{ subject: '', body: '' }],
@@ -92,22 +91,6 @@ export function CreateFormClient() {
               )}
             />
 
-            <FormField
-              control={form.control}
-              name="webhook_url"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Webhook URL</FormLabel>
-                  <FormControl>
-                    <Input {...field} placeholder="https://..." />
-                  </FormControl>
-                  <FormDescription>
-                    Optioneel. Ontvang een notificatie wanneer feedback binnenkomt.
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
           </CardContent>
         </Card>
 
