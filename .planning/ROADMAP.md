@@ -108,15 +108,16 @@ Plans:
   11. Webhook POST fires with JSON payload if webhook URL configured (fire-and-forget)
   12. Success message "Bedankt! Je feedback is succesvol verstuurd." displays after submission
   13. Client revisiting form sees read-only view with previously submitted feedback (no re-submission)
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] TBD (planning not started)
+- [ ] 05-01-PLAN.md — RLS migration fix, Server Action for feedback submission with webhook, page routing and 404 handling
+- [ ] 05-02-PLAN.md — Interactive FeedbackForm Client Component with Zod validation and ReadOnlyView for completed forms
 
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
+Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
@@ -124,8 +125,8 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 2. Dashboard Home | 1/1 | Complete | 2026-02-10 |
 | 3. Dashboard Form Detail | 1/1 | Complete | 2026-02-11 |
 | 4. Form Creation & Management | 3/3 | Complete | 2026-02-11 |
-| 5. Public Feedback Form | 0/TBD | Not started | - |
+| 5. Public Feedback Form | 0/2 | Planning complete | - |
 
 ---
 *Roadmap created: 2026-02-10*
-*Last updated: 2026-02-11 after completing Phase 4 (3/3 plans — form creation & management complete)*
+*Last updated: 2026-02-11 after planning Phase 5 (2 plans created)*
