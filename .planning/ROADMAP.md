@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: Dashboard Home** - Agency can view all forms in a list with status and shareable links
 - [x] **Phase 3: Dashboard Form Detail** - Agency can view individual form details with variants and feedback
 - [x] **Phase 4: Form Creation & Management** - Agency can create forms with variants and delete forms with confirmation
-- [ ] **Phase 5: Public Feedback Form** - Clients can submit feedback on email variants through public URLs
+- [x] **Phase 5: Public Feedback Form** - Clients can submit feedback on email variants through public URLs
 
 ## Phase Details
 
@@ -111,8 +111,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 05-01-PLAN.md — RLS migration fix, Server Action for feedback submission with webhook, page routing and 404 handling
-- [ ] 05-02-PLAN.md — Interactive FeedbackForm Client Component with Zod validation and ReadOnlyView for completed forms
+- [x] 05-01-PLAN.md — RLS migration fix, Server Action for feedback submission with webhook, page routing and 404 handling (completed 2026-02-11, 5.5 min)
+- [x] 05-02-PLAN.md — Interactive FeedbackForm Client Component with Zod validation and ReadOnlyView for completed forms (completed 2026-02-11, 8 min)
 
 ## Progress
 
@@ -125,8 +125,8 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 | 2. Dashboard Home | 1/1 | Complete | 2026-02-10 |
 | 3. Dashboard Form Detail | 1/1 | Complete | 2026-02-11 |
 | 4. Form Creation & Management | 3/3 | Complete | 2026-02-11 |
-| 5. Public Feedback Form | 0/2 | Planning complete | - |
+| 5. Public Feedback Form | 2/2 | Complete | 2026-02-11 |
 
 ---
 *Roadmap created: 2026-02-10*
-*Last updated: 2026-02-11 after planning Phase 5 (2 plans created)*
+*Last updated: 2026-02-11 — All phases complete. Milestone done.*
