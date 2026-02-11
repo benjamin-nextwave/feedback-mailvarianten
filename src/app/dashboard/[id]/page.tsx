@@ -7,6 +7,7 @@ import { StatusBadge } from "@/components/status-badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CopyLinkButton } from "../_components/copy-link-button";
 import { formatDate, generatePublicUrl } from "@/lib/utils";
+import { DeleteFormDialog } from "@/components/forms/DeleteFormDialog";
 
 type EmailType = 'eerste_mail' | 'opvolgmail_1' | 'opvolgmail_2';
 
@@ -100,7 +101,13 @@ export default async function FormDetailPage({
         title={formData.client_name}
         description={`Aangemaakt op ${formatDate(formData.created_at)}`}
       >
-        <StatusBadge status={formData.status} />
+        <div className="flex items-center gap-2">
+          <StatusBadge status={formData.status} />
+          <DeleteFormDialog
+            formId={formData.id}
+            formName={formData.client_name}
+          />
+        </div>
       </PageHeader>
 
       {/* Form metadata card */}

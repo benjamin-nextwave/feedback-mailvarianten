@@ -52,7 +52,7 @@ export function DeleteFormDialog({
             Weet je zeker dat je dit formulier wilt verwijderen?
           </AlertDialogTitle>
           <AlertDialogDescription>
-            Het formulier voor "{formName}" wordt permanent verwijderd,
+            Het formulier voor &ldquo;{formName}&rdquo; wordt permanent verwijderd,
             inclusief alle varianten en feedback. Deze actie kan niet ongedaan
             worden gemaakt.
           </AlertDialogDescription>
