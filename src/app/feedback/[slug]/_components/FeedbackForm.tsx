@@ -1,16 +1,23 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { CheckCircle, Loader2 } from "lucide-react";
+import { CheckCircle, Loader2, ThumbsUp, MessageSquare, ThumbsDown } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { submitFeedbackAction } from "@/lib/actions/feedback-actions";
 
 type EmailType = "eerste_mail" | "opvolgmail_1" | "opvolgmail_2";
+type Rating = "good" | "notes" | "not_good";
+
+const RATING_LABELS: Record<Rating, string> = {
+  good: "Goed zo",
+  notes: "Goed, maar heb opmerkingen",
+  not_good: "Niet goed",
+};
 
 interface FeedbackFormProps {
   form: {
@@ -44,10 +51,13 @@ const buildFeedbackSchema = (variantIds: string[]) => {
   const shape: Record<string, z.ZodOptional<z.ZodString>> = {};
   variantIds.forEach((id) => {
     shape[`feedback_${id}`] = z.string().optional();
+    shape[`rating_${id}`] = z.string().optional();
   });
   return z.object(shape).superRefine((data, ctx) => {
-    const hasAnyFeedback = Object.values(data).some(
-      (val) => val && val.trim().length > 0
+    const hasAnyFeedback = Object.entries(data).some(
+      ([key, val]) =>
+        (key.startsWith("feedback_") && val && val.trim().length > 0) ||
+        (key.startsWith("rating_") && val && val.trim().length > 0)
     );
     if (!hasAnyFeedback) {
       ctx.addIssue({
@@ -64,6 +74,7 @@ export function FeedbackForm({ form }: FeedbackFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [ratings, setRatings] = useState<Record<string, Rating | null>>({});
 
   const variantIds = useMemo(
     () => form.email_variants.map((v) => v.id),
@@ -75,28 +86,60 @@ export function FeedbackForm({ form }: FeedbackFormProps) {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(schema),
     mode: "onSubmit",
     reValidateMode: "onChange",
     defaultValues: Object.fromEntries(
-      variantIds.map((id) => [`feedback_${id}`, ""])
+      variantIds.flatMap((id) => [
+        [`feedback_${id}`, ""],
+        [`rating_${id}`, ""],
+      ])
     ),
   });
+
+  const handleRatingClick = useCallback(
+    (variantId: string, rating: Rating) => {
+      setRatings((prev) => {
+        const current = prev[variantId];
+        const newRating = current === rating ? null : rating;
+        // Sync hidden rating field
+        setValue(`rating_${variantId}`, newRating ? RATING_LABELS[newRating] : "");
+        // Clear text when selecting "good"
+        if (newRating === "good") {
+          setValue(`feedback_${variantId}`, "");
+        }
+        return { ...prev, [variantId]: newRating };
+      });
+    },
+    [setValue]
+  );
 
   const onSubmit = async (data: any) => {
     setIsSubmitting(true);
     setSubmitError(null);
 
     try {
-      // Build feedbackEntries array from form values
-      const feedbackEntries = Object.entries(data)
-        .filter(([key, value]) => key.startsWith("feedback_") && value && (value as string).trim().length > 0)
-        .map(([key, value]) => ({
-          variant_id: key.replace("feedback_", ""),
-          feedback_text: (value as string).trim(),
-        }));
+      // Build feedbackEntries combining rating + text
+      const feedbackEntries = variantIds
+        .map((id) => {
+          const rating = data[`rating_${id}`] as string | undefined;
+          const text = (data[`feedback_${id}`] as string || "").trim();
+
+          if (!rating && !text) return null;
+
+          const parts: string[] = [];
+          if (rating) parts.push(`[${rating}]`);
+          if (text) parts.push(text);
+
+          return {
+            variant_id: id,
+            feedback_text: parts.join(" "),
+          };
+        })
+        .filter((entry): entry is NonNullable<typeof entry> => entry !== null);
 
       const result = await submitFeedbackAction(
         form.id,
@@ -170,16 +213,52 @@ export function FeedbackForm({ form }: FeedbackFormProps) {
                   <div className="whitespace-pre-wrap rounded-lg bg-gray-50 p-4 text-sm">
                     {variant.email_body}
                   </div>
-                  <div>
-                    <label
-                      htmlFor={`feedback_${variant.id}`}
-                      className="mb-2 block text-sm font-medium"
-                    >
+                  <div className="space-y-3">
+                    <label className="block text-sm font-medium">
                       Jouw feedback
                     </label>
+                    <div className="flex flex-wrap gap-2">
+                      <Button
+                        type="button"
+                        variant={ratings[variant.id] === "good" ? "default" : "outline"}
+                        size="sm"
+                        className={ratings[variant.id] === "good" ? "bg-green-600 hover:bg-green-700" : ""}
+                        onClick={() => handleRatingClick(variant.id, "good")}
+                      >
+                        <ThumbsUp className="mr-1.5 h-4 w-4" />
+                        Goed zo
+                      </Button>
+                      <Button
+                        type="button"
+                        variant={ratings[variant.id] === "notes" ? "default" : "outline"}
+                        size="sm"
+                        className={ratings[variant.id] === "notes" ? "bg-amber-500 hover:bg-amber-600" : ""}
+                        onClick={() => handleRatingClick(variant.id, "notes")}
+                      >
+                        <MessageSquare className="mr-1.5 h-4 w-4" />
+                        Goed, maar heb opmerkingen
+                      </Button>
+                      <Button
+                        type="button"
+                        variant={ratings[variant.id] === "not_good" ? "default" : "outline"}
+                        size="sm"
+                        className={ratings[variant.id] === "not_good" ? "bg-red-600 hover:bg-red-700" : ""}
+                        onClick={() => handleRatingClick(variant.id, "not_good")}
+                      >
+                        <ThumbsDown className="mr-1.5 h-4 w-4" />
+                        Niet goed
+                      </Button>
+                    </div>
+                    <input type="hidden" {...register(`rating_${variant.id}`)} />
                     <Textarea
                       id={`feedback_${variant.id}`}
-                      placeholder="Schrijf hier je feedback over deze variant..."
+                      placeholder={
+                        ratings[variant.id] === "good"
+                          ? "Geen opmerkingen nodig"
+                          : "Schrijf hier je feedback over deze variant..."
+                      }
+                      disabled={ratings[variant.id] === "good"}
+                      className={ratings[variant.id] === "good" ? "opacity-50" : ""}
                       {...register(`feedback_${variant.id}`)}
                     />
                   </div>
