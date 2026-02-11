@@ -68,6 +68,7 @@ export async function createFormAction(data: FormSchemaType) {
       .insert({
         client_name: data.klantnaam,
         slug,
+        webhook_url: null,
         status: "active" as const,
       } as any)
       .select()
@@ -75,7 +76,7 @@ export async function createFormAction(data: FormSchemaType) {
 
     if (formError || !formData) {
       console.error("Form creation error:", formError);
-      return { message: "Er ging iets mis bij het aanmaken" };
+      return { message: "Fout bij aanmaken formulier: " + (formError?.message || "onbekend") };
     }
 
     const form = formData as Form;
@@ -132,14 +133,14 @@ export async function createFormAction(data: FormSchemaType) {
 
     if (variantsError) {
       console.error("Variants creation error:", variantsError);
-      return { message: "Er ging iets mis bij het aanmaken" };
+      return { message: "Fout bij varianten: " + (variantsError?.message || "onbekend") };
     }
 
     revalidatePath("/dashboard");
     return { success: true, slug };
   } catch (error) {
     console.error("Form action error:", error);
-    return { message: "Er ging iets mis bij het aanmaken" };
+    return { message: "Onverwachte fout: " + (error instanceof Error ? error.message : "onbekend") };
   }
 }
 
