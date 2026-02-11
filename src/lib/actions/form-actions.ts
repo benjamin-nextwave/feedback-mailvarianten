@@ -4,7 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { formSchema, type FormSchemaType } from "@/lib/validations/form-schema";
 import type { Form, EmailVariantInsert } from "@/types/database.types";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+import { redirect, isRedirectError } from "next/navigation";
 import slugify from "slugify";
 
 /**
@@ -138,6 +138,7 @@ export async function createFormAction(data: FormSchemaType) {
     revalidatePath("/dashboard");
     redirect("/dashboard");
   } catch (error) {
+    if (isRedirectError(error)) throw error;
     console.error("Form action error:", error);
     return { message: "Er ging iets mis bij het aanmaken" };
   }
@@ -164,6 +165,7 @@ export async function deleteFormAction(formId: string) {
     revalidatePath("/dashboard");
     redirect("/dashboard");
   } catch (error) {
+    if (isRedirectError(error)) throw error;
     console.error("Delete action error:", error);
     return { message: "Er ging iets mis bij het verwijderen" };
   }
