@@ -15,7 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Foundation & Design System** - Database schema, RLS policies, infrastructure setup, and UI design system
 - [x] **Phase 2: Dashboard Home** - Agency can view all forms in a list with status and shareable links
 - [x] **Phase 3: Dashboard Form Detail** - Agency can view individual form details with variants and feedback
-- [ ] **Phase 4: Form Creation & Management** - Agency can create forms with variants and delete forms with confirmation
+- [x] **Phase 4: Form Creation & Management** - Agency can create forms with variants and delete forms with confirmation
 - [ ] **Phase 5: Public Feedback Form** - Clients can submit feedback on email variants through public URLs
 
 ## Phase Details
@@ -87,8 +87,8 @@ Plans:
 
 Plans:
 - [x] 04-01-PLAN.md — Install dependencies (react-hook-form, zod, slugify), add shadcn form components, create Zod schema and Server Actions (completed 2026-02-11, 5.6 min)
-- [ ] 04-02-PLAN.md — Form creation page with dynamic variant fields, opvolgmail toggles, and dashboard navigation
-- [ ] 04-03-PLAN.md — Delete form confirmation dialog integrated into dashboard table and form detail page
+- [x] 04-02-PLAN.md — Form creation page with dynamic variant fields, opvolgmail toggles, and dashboard navigation (completed 2026-02-11, 5 min)
+- [x] 04-03-PLAN.md — Delete form confirmation dialog integrated into dashboard table and form detail page (completed 2026-02-11, 8 min)
 
 ### Phase 5: Public Feedback Form
 **Goal**: Clients can submit feedback on email variants through simple, professional public forms
@@ -123,9 +123,9 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 1. Foundation & Design System | 2/2 | Complete | 2026-02-10 |
 | 2. Dashboard Home | 1/1 | Complete | 2026-02-10 |
 | 3. Dashboard Form Detail | 1/1 | Complete | 2026-02-11 |
-| 4. Form Creation & Management | 1/3 | In progress | - |
+| 4. Form Creation & Management | 3/3 | Complete | 2026-02-11 |
 | 5. Public Feedback Form | 0/TBD | Not started | - |
 
 ---
 *Roadmap created: 2026-02-10*
-*Last updated: 2026-02-11 after completing plan 04-01 (dependencies and schema)*
+*Last updated: 2026-02-11 after completing Phase 4 (3/3 plans — form creation & management complete)*
