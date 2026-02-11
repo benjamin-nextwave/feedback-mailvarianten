@@ -65,10 +65,10 @@ Plans:
   4. Submitted feedback appears in green-highlighted cards under corresponding variants
   5. Variants without feedback show gray "Nog geen feedback ontvangen" placeholder
   6. Navigation from dashboard home to form detail works correctly
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] TBD (planning not started)
+- [ ] 03-01-PLAN.md — Form detail page with nested data fetch, variant grouping by type, feedback display, loading skeleton, and 404 handling
 
 ### Phase 4: Form Creation & Management
 **Goal**: Agency can create new forms with email variants and delete forms with confirmation
@@ -120,10 +120,10 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 |-------|----------------|--------|-----------|
 | 1. Foundation & Design System | 2/2 | Complete | 2026-02-10 |
 | 2. Dashboard Home | 1/1 | Complete | 2026-02-10 |
-| 3. Dashboard Form Detail | 0/TBD | Not started | - |
+| 3. Dashboard Form Detail | 0/1 | Planned | - |
 | 4. Form Creation & Management | 0/TBD | Not started | - |
 | 5. Public Feedback Form | 0/TBD | Not started | - |
 
 ---
 *Roadmap created: 2026-02-10*
-*Last updated: 2026-02-10 after completing Phase 2 (1/1 plan executed)*
+*Last updated: 2026-02-11 after planning Phase 3 (1 plan created)*
