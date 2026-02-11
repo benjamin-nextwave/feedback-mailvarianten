@@ -25,45 +25,57 @@ export const formSchema = z
       .min(1, "Minimaal 1 variant vereist")
       .max(5, "Maximaal 5 varianten toegestaan"),
 
-    // Opvolgmail 1 toggle and variants
+    // Opvolgmail 1 toggle and variants (validated in superRefine when enabled)
     opvolgmail_1_enabled: z.boolean().default(false),
-    opvolgmail_1_variants: z.array(variantSchema).optional(),
+    opvolgmail_1_variants: z.array(z.object({ subject: z.string(), body: z.string() })).optional(),
 
-    // Opvolgmail 2 toggle and variants
+    // Opvolgmail 2 toggle and variants (validated in superRefine when enabled)
     opvolgmail_2_enabled: z.boolean().default(false),
-    opvolgmail_2_variants: z.array(variantSchema).optional(),
+    opvolgmail_2_variants: z.array(z.object({ subject: z.string(), body: z.string() })).optional(),
   })
   .superRefine((data, ctx) => {
-    // If opvolgmail_1 is enabled, variants must be provided (1-5 items)
+    // If opvolgmail_1 is enabled, variants must be provided (1-5 items) with content
     if (data.opvolgmail_1_enabled) {
-      if (!data.opvolgmail_1_variants || data.opvolgmail_1_variants.length === 0) {
+      const variants = data.opvolgmail_1_variants;
+      if (!variants || variants.length === 0) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           message: "Minimaal 1 variant vereist voor opvolgmail 1",
           path: ["opvolgmail_1_variants"],
         });
-      } else if (data.opvolgmail_1_variants.length > 5) {
+      } else if (variants.length > 5) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           message: "Maximaal 5 varianten toegestaan voor opvolgmail 1",
           path: ["opvolgmail_1_variants"],
         });
+      } else {
+        variants.forEach((v, i) => {
+          if (!v.subject) ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Onderwerp is verplicht", path: ["opvolgmail_1_variants", i, "subject"] });
+          if (!v.body) ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Inhoud is verplicht", path: ["opvolgmail_1_variants", i, "body"] });
+        });
       }
     }
 
-    // If opvolgmail_2 is enabled, variants must be provided (1-5 items)
+    // If opvolgmail_2 is enabled, variants must be provided (1-5 items) with content
     if (data.opvolgmail_2_enabled) {
-      if (!data.opvolgmail_2_variants || data.opvolgmail_2_variants.length === 0) {
+      const variants = data.opvolgmail_2_variants;
+      if (!variants || variants.length === 0) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           message: "Minimaal 1 variant vereist voor opvolgmail 2",
           path: ["opvolgmail_2_variants"],
         });
-      } else if (data.opvolgmail_2_variants.length > 5) {
+      } else if (variants.length > 5) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           message: "Maximaal 5 varianten toegestaan voor opvolgmail 2",
           path: ["opvolgmail_2_variants"],
+        });
+      } else {
+        variants.forEach((v, i) => {
+          if (!v.subject) ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Onderwerp is verplicht", path: ["opvolgmail_2_variants", i, "subject"] });
+          if (!v.body) ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Inhoud is verplicht", path: ["opvolgmail_2_variants", i, "body"] });
         });
       }
 
