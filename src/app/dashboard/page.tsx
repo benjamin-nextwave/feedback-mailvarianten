@@ -1,7 +1,10 @@
 import { createClient } from "@/lib/supabase/server";
+import Link from "next/link";
 import { PageHeader } from "@/components/page-header";
 import { EmptyState } from "@/components/empty-state";
 import { FormsTable } from "./_components/forms-table";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
 
 export default async function DashboardPage() {
   const supabase = await createClient();
@@ -20,7 +23,14 @@ export default async function DashboardPage() {
       <PageHeader
         title="Formulieren"
         description="Beheer je feedback formulieren"
-      />
+      >
+        <Link href="/dashboard/forms/create">
+          <Button>
+            <Plus className="mr-2 h-4 w-4" />
+            Nieuw formulier
+          </Button>
+        </Link>
+      </PageHeader>
 
       {!forms || forms.length === 0 ? (
         <EmptyState

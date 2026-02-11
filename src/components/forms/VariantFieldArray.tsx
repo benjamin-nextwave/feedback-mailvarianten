@@ -16,7 +16,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Plus, Trash2 } from 'lucide-react';
 
 interface VariantFieldArrayProps {
-  control: Control<FormSchemaType>;
+  control: Control<any>; // Allow any form type for flexibility with react-hook-form
   name: 'eerste_mail_variants' | 'opvolgmail_1_variants' | 'opvolgmail_2_variants';
   label: string;
   minItems?: number;
