@@ -13,12 +13,11 @@ export const formSchema = z
     klantnaam: z.string().min(1, "Klantnaam is verplicht"),
 
     // Optional receiver info
-    ontvanger_voornaam: z.string().optional().or(z.literal("")),
-    ontvanger_email: z
-      .string()
-      .email("Ongeldig e-mailadres")
-      .optional()
-      .or(z.literal("")),
+    ontvanger_voornaam: z.string().default(""),
+    ontvanger_email: z.union([
+      z.literal(""),
+      z.string().email("Ongeldig e-mailadres"),
+    ]).default(""),
 
     // Eerste mail variants: required, 1-5 items
     eerste_mail_variants: z
