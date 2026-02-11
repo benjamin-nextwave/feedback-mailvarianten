@@ -6,6 +6,7 @@ import type { Form, EmailVariantInsert } from "@/types/database.types";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { isRedirectError } from "next/dist/client/components/redirect-error";
+// redirect + isRedirectError still used by deleteFormAction
 import slugify from "slugify";
 
 /**
@@ -134,13 +135,34 @@ export async function createFormAction(data: FormSchemaType) {
       return { message: "Er ging iets mis bij het aanmaken" };
     }
 
-    // Revalidate and redirect
     revalidatePath("/dashboard");
-    redirect("/dashboard");
+    return { success: true, slug };
   } catch (error) {
-    if (isRedirectError(error)) throw error;
     console.error("Form action error:", error);
     return { message: "Er ging iets mis bij het aanmaken" };
+  }
+}
+
+const EMAIL_WEBHOOK_URL = "https://hook.eu2.make.com/jsgrny2giuipc975oqxf0l4zbe2yh9wa";
+
+/**
+ * Fire webhook to send form link via email
+ */
+export async function sendFormEmailAction(
+  voornaam: string,
+  email: string,
+  formUrl: string
+) {
+  try {
+    await fetch(EMAIL_WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ voornaam, email, form_url: formUrl }),
+    });
+    return { success: true };
+  } catch (error) {
+    console.error("Email webhook failed:", error);
+    return { success: false };
   }
 }
 
